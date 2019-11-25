@@ -1,0 +1,11 @@
+---
+- name: ceph-deploy install ceph packages in all ceph mons
+  command: "ceph-deploy install {{ item }}"
+  args:
+    chdir: "{{ ceph_deploy_dir }}"
+  with_items: "{{ ceph_mon_nodes }}"
+
+- name: deploy ceph-mon on mon nodes
+  command: "ceph-deploy mon create-initial"
+  args:
+    chdir: "{{ ceph_deploy_dir }}"

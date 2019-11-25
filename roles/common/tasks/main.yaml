@@ -1,0 +1,6 @@
+---
+- include_tasks: repos.yaml
+
+- include_tasks: ntp.yaml
+
+- include_tasks: configure.yaml

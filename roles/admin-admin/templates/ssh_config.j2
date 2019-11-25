@@ -1,0 +1,6 @@
+{% for host in groups['ceph'] %}
+Host    {{ hostvars[host]['ansible_default_ipv4']['address'] }}
+Hostname        {{ hostvars[host]['ansible_hostname'] }}
+User        root
+
+{% endfor %}

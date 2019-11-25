@@ -1,0 +1,26 @@
+# all variables
+ceph_release: "jewel"
+
+ceph_deploy_dir: "/var/deploy/ceph-cluster/"
+ceph_mon_nodes:
+  - "keceph1"
+  - "keceph2"
+  - "keceph3"
+
+ceph_osd_nodes:
+  - "keceph1"
+  - "keceph2"
+  - "keceph3"
+
+ceph_osd_disks:
+  - "keceph1:/dev/vdb"
+  - "keceph1:/dev/vdc"
+  - "keceph2:/dev/vdb"
+  - "keceph2:/dev/vdc"
+  - "keceph3:/dev/vdb"
+  - "keceph3:/dev/vdc"
+
+ceph_all_nodes: "{{ ceph_mon_nodes | union(ceph_osd_nodes) }}"
+ceph_nodes: "{{ ceph_all_nodes|join(' ') }}"
+ceph_mons: "{{ ceph_mon_nodes|join(' ') }}"
+ceph_osds: "{{ ceph_osd_nodes|join(' ') }}"

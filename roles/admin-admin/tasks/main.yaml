@@ -1,0 +1,18 @@
+---
+- name: create ssh config
+  template:
+    src: "ssh_config.j2"
+    dest: "/root/.ssh/config"
+
+- name: create directory ceph_cluster
+  file:
+    path: "{{ ceph_deploy_dir }}"
+    state: directory
+
+- name: install ceph-deploy binary
+  package:
+    name: "ceph-deploy"
+    state: present
+
+
+

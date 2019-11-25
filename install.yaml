@@ -1,0 +1,12 @@
+---
+- hosts: [hosts]
+  roles:
+    - common
+
+- hosts: [admin]
+  roles:
+    - admin-admin
+    - admin-new
+    - admin-mon
+    - admin-osd
+  

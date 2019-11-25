@@ -1,0 +1,6 @@
+---
+osds:
+    - path: /var/local/ceph/osd21
+      dev: /dev/vdb
+    - path: /var/local/ceph/osd22
+      dev: /dev/vdc

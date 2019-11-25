@@ -1,0 +1,11 @@
+---
+- hosts: [admin]
+  vars:
+    ceph_osd_nodes:
+      - "keceph3"
+    ceph_osd_disks: 
+      - "keceph3:/dev/vdd"
+      - "keceph3:/dev/vde"
+  roles:
+    - admin-osd
+    

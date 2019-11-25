@@ -1,0 +1,5 @@
+---
+- name: ceph-deploy new a ceph custer
+  command: "ceph-deploy new {{ ceph_mons }}"
+  args:
+    chdir: "{{ ceph_deploy_dir }}"

@@ -1,0 +1,16 @@
+---
+- hosts: [admin]
+  tasks:
+    - name: echo mons
+      debug: var=ceph_mons
+
+    - name: echo nodes
+      debug: var=ceph_nodes
+
+    - name: debug osd_dir_str
+      debug: var=hostvars['{{ item }}']['osd_dir_str']
+      loop: "{{ groups['osd'] }}"
+
+    - name: loop groups
+      command: "echo hostvars['{{ item }}']['osd_dir_str']"
+      loop: "{{ groups['osd'] }}"

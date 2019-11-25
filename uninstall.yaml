@@ -1,0 +1,31 @@
+---
+- hosts: [admin]
+  tasks:
+    - name: ceph-deploy purge
+      command: "ceph-deploy purge {{ ceph_nodes }}"
+      args:
+        chdir: "{{ ceph_deploy_dir }}"
+
+    - name: ceph-deploy purgedata
+      command: "ceph-deploy purgedata {{ ceph_nodes }}"
+      args:
+        chdir: "{{ ceph_deploy_dir }}"
+
+    - name: ceph-deploy forgetkeys
+      command: "ceph-deploy forgetkeys"
+      args:
+        chdir: "{{ ceph_deploy_dir }}"
+
+- hosts: [ceph]
+  tasks:
+    - name: clean etc_ceph
+      file: 
+        path: "/etc/ceph"
+        state: "absent"
+
+- hosts: [admin]
+  tasks:
+    - name: remove deploy dir
+      file:
+        path:  "{{ ceph_deploy_dir }}"
+        state: "absent"

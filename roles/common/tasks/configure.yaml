@@ -1,0 +1,23 @@
+---
+- name: set /etc/hosts
+  template: 
+    src: "hosts.j2"
+    dest: "/etc/hosts"
+
+- name: stop firewalld
+  service: name=firewalld.service enabled=False state=stopped
+
+- name: set selinux permissive
+  selinux:
+    policy: targeted
+    state: permissive
+
+- name: set selinux disabled
+  selinux:
+    state: disabled
+
+
+
+
+
+

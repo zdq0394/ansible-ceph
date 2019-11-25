@@ -1,0 +1,9 @@
+---
+- name: install ntp related
+  yum:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - ntp
+    - ntpdate
+    - ntp-doc

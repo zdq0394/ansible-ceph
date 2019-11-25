@@ -1,0 +1,32 @@
+---
+- name: ceph-deploy install ceph packages in all ceph osd nodes
+  command: "ceph-deploy install {{ item }}"
+  args:
+    chdir: "{{ ceph_deploy_dir }}"
+  with_items: "{{ ceph_osd_nodes }}"
+  tags:
+    - deploy-osd
+
+- name: ceph-deploy zap disk 
+  command: "ceph-deploy disk zap {{ item }}"
+  args:
+    chdir: "{{ ceph_deploy_dir }}"
+  with_items: "{{ ceph_osd_disks }}"
+  tags:
+    - deploy-osd
+
+- name: ceph-deploy prepare osd nodes
+  command: "ceph-deploy osd prepare {{ item }}"
+  args:
+    chdir: "{{ ceph_deploy_dir }}"
+  with_items: "{{ ceph_osd_disks }}"
+  tags:
+    - deploy-osd
+
+- name: ceph-deploy activate osd nodes
+  command: "ceph-deploy osd activate {{ item }}1"
+  args:
+    chdir: "{{ ceph_deploy_dir }}"
+  with_items: "{{ ceph_osd_disks }}"
+  tags:
+    - deploy-osd
